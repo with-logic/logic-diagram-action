@@ -1,0 +1,43 @@
+name: "Logic Diagram Generator"
+description: "Generate architecture diagrams from PR content using Logic.inc"
+author: "with-logic"
+
+branding:
+  icon: "git-pull-request"
+  color: "blue"
+
+inputs:
+  github_token:
+    description: "GitHub token with pull request read/write permissions"
+    required: true
+  document_id:
+    description: "Logic.inc document UUID from your dashboard"
+    required: true
+  timeout:
+    description: "API timeout in seconds"
+    required: false
+    default: "600"
+  max_diff_length:
+    description: "Maximum diff length before truncation (characters)"
+    required: false
+    default: "50000"
+  api_base_url:
+    description: "Logic API base URL"
+    required: false
+    default: "https://api.logic.inc/v1"
+  version:
+    description: "Document version to use"
+    required: false
+    default: "draft"
+
+outputs:
+  image_url:
+    description: "Presigned URL of the generated diagram"
+  file_id:
+    description: "Persistent file ID for refresh operations"
+  comment_id:
+    description: "GitHub comment ID"
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
