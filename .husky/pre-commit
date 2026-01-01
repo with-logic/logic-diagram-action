@@ -1,0 +1,15 @@
+# Run lint-staged for formatting/linting
+npx lint-staged
+
+# Run typecheck
+npm run typecheck
+
+# Run tests
+npm test
+
+# Rebuild dist if any src files are staged
+if git diff --cached --name-only | grep -q "^src/"; then
+  echo "Source files changed, rebuilding dist..."
+  npm run build
+  git add dist/index.js dist/index.js.map
+fi

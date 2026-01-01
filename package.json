@@ -1,0 +1,68 @@
+{
+  "name": "logic-diagram-action",
+  "version": "0.5.0",
+  "private": true,
+  "description": "GitHub Action that generates architecture diagrams from PR content using Logic.inc API",
+  "keywords": [
+    "github-action",
+    "architecture-diagram",
+    "pull-request",
+    "logic-inc",
+    "diagram-generation"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/with-logic/logic-diagram-action.git"
+  },
+  "bugs": {
+    "url": "https://github.com/with-logic/logic-diagram-action/issues"
+  },
+  "homepage": "https://github.com/with-logic/logic-diagram-action#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run --coverage",
+    "test:unit": "vitest run --coverage tests/unit",
+    "test:int": "vitest run --coverage tests/integration",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint . --ext .ts,.tsx --fix && prettier --write .",
+    "lint:check": "eslint . --ext .ts,.tsx && prettier --check .",
+    "pre-commit": "npm run lint && npm run typecheck && npm test",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.11.1",
+    "@types/node": "^20.17.10",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "@vitest/coverage-v8": "^2.1.1",
+    "esbuild": "^0.27.2",
+    "eslint": "^9.11.1",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.9.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.1"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}

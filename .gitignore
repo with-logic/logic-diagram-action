@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output (we commit dist/ for GitHub Actions)
+# dist/
+
+# Coverage
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test artifacts
+*.tsbuildinfo
