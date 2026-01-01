@@ -24124,6 +24124,11 @@ An error occurred while generating the architecture diagram.
 
 *Error: ${errorMessage}*`;
 }
+function getForkSkipComment() {
+  return `## Diagram Generation Skipped
+
+Architecture diagram generation is not available for pull requests from forked repositories due to security restrictions on secrets access.`;
+}
 function getRefreshNotFoundComment() {
   return `## Diagram Refresh Failed
 
@@ -24320,6 +24325,11 @@ async function handleGenerate(context2, options) {
     const pr = await fetchPullRequest(context2);
     context2.isFork = pr.isFork;
     context2.isDraft = pr.isDraft;
+    if (pr.isFork) {
+      core.info("Skipping diagram generation for fork PR");
+      await postErrorComment(context2, getForkSkipComment());
+      return { success: false };
+    }
     if (pr.isDraft) {
       core.info("Skipping diagram generation for draft PR");
       return { success: false };

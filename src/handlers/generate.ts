@@ -17,7 +17,7 @@ import {
   getPayloadTooLargeErrorComment,
   getRateLimitErrorComment,
   getTimeoutErrorComment,
-  // getForkSkipComment, // TODO: Re-enable when fork check is re-enabled
+  getForkSkipComment,
 } from "../errors/index.js";
 
 export interface GenerateResult {
@@ -54,13 +54,12 @@ export async function handleGenerate(
     context.isFork = pr.isFork;
     context.isDraft = pr.isDraft;
 
-    // TODO: Re-enable fork check before production
     // Skip fork PRs
-    // if (pr.isFork) {
-    //   core.info("Skipping diagram generation for fork PR");
-    //   await postErrorComment(context, getForkSkipComment());
-    //   return { success: false };
-    // }
+    if (pr.isFork) {
+      core.info("Skipping diagram generation for fork PR");
+      await postErrorComment(context, getForkSkipComment());
+      return { success: false };
+    }
 
     // Skip draft PRs silently
     if (pr.isDraft) {
