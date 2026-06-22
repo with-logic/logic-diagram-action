@@ -50,7 +50,7 @@ jobs:
 
     steps:
       - name: Logic Diagram Action
-        uses: with-logic/logic-diagram-action@v1
+        uses: with-logic/logic-diagram-action@v0.6.0
         with:
           document_id: ${{ vars.LOGIC_DOCUMENT_ID }}
         env:
