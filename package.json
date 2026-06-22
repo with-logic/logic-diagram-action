@@ -1,6 +1,6 @@
 {
   "name": "logic-diagram-action",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "description": "GitHub Action that generates architecture diagrams from PR content using Logic.inc API",
   "keywords": [
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/with-logic/logic-diagram-action#readme",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "main": "dist/index.js",
   "scripts": {
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
-    "@types/node": "^20.17.10",
+    "@types/node": "^24",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "@vitest/coverage-v8": "^2.1.1",

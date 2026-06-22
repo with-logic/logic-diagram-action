@@ -1,4 +1,4 @@
-// logic-diagram-action v0.5.0
+// logic-diagram-action v0.6.0
 // https://github.com/with-logic/logic-diagram-action
 "use strict";
 var __create = Object.create;
