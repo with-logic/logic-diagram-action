@@ -161,19 +161,32 @@ describe("Unit: LogicClient", () => {
   });
 
   describe("timeout handling", () => {
-    test("should throw TimeoutError when request is aborted", async () => {
-      const abortError = new Error("The operation was aborted");
-      abortError.name = "AbortError";
+    test("should abort a pending request when its deadline expires", async () => {
+      vi.useFakeTimers();
+      try {
+        global.fetch = vi.fn<typeof fetch>(
+          (_url, options) =>
+            new Promise<Response>((_resolve, reject) => {
+              options?.signal?.addEventListener(
+                "abort",
+                () => reject(new DOMException("The operation was aborted", "AbortError")),
+                { once: true }
+              );
+            })
+        );
 
-      global.fetch = vi.fn().mockRejectedValue(abortError);
-
-      await expect(
-        client.generateDiagram(mockDocumentId, {
+        const request = client.generateDiagram(mockDocumentId, {
           title: "Test",
           description: "Test",
           diff: "test",
-        })
-      ).rejects.toThrow(TimeoutError);
+        });
+        const failure = expect(request).rejects.toThrow(TimeoutError);
+        await vi.advanceTimersByTimeAsync(timeoutMs);
+        await failure;
+        expect(vi.mocked(global.fetch).mock.calls[0]?.[1]?.signal?.aborted).toBe(true);
+      } finally {
+        vi.useRealTimers();
+      }
     });
 
     test("should rethrow non-abort errors", async () => {
