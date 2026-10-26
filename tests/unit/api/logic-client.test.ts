@@ -180,9 +180,9 @@ describe("Unit: LogicClient", () => {
           description: "Test",
           diff: "test",
         });
-        const failure = expect(request).rejects.toThrow(TimeoutError);
+        const timeoutErrorAssertion = expect(request).rejects.toThrow(TimeoutError);
         await vi.advanceTimersByTimeAsync(timeoutMs);
-        await failure;
+        await timeoutErrorAssertion;
         expect(vi.mocked(global.fetch).mock.calls[0]?.[1]?.signal?.aborted).toBe(true);
       } finally {
         vi.useRealTimers();
