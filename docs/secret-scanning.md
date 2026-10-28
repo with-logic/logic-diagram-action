@@ -80,15 +80,20 @@ Install the native CLI once, then scan only the Git index:
 
 ```sh
 brew install gitleaks
+gitleaks version # Confirm 8.30.1.
+GIT_NO_LAZY_FETCH=1 \
 GIT_CONFIG_PARAMETERS="${GIT_CONFIG_PARAMETERS:+$GIT_CONFIG_PARAMETERS }'color.ui=false' 'color.diff=false'" \
 gitleaks git --pre-commit --staged --redact=100
 ```
 
 The native scan needs no network access. Disabling Git color prevents the 8.30.1
 diff parser from silently missing staged content. Use 8.30.1 for matching CI rules.
+If Homebrew supplies a newer version, use the
+[official v8.30.1 release](https://github.com/gitleaks/gitleaks/releases/tag/v8.30.1).
 To check committed branch history against a locally available base:
 
 ```sh
+GIT_NO_LAZY_FETCH=1 \
 GIT_CONFIG_PARAMETERS="${GIT_CONFIG_PARAMETERS:+$GIT_CONFIG_PARAMETERS }'color.ui=false' 'color.diff=false'" \
 gitleaks git --redact=100 \
   --log-opts="origin/main..HEAD --full-history --diff-merges=remerge --text --no-ext-diff --no-textconv"
