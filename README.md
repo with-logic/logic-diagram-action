@@ -142,6 +142,13 @@ The PR may be too complex. Consider breaking it into smaller PRs.
 
 ## Development
 
+CI review runs through Pipeline and fetches the review collection from Skills
+through Crew. The source App uses `PIPELINE_SOURCE_APP_CLIENT_ID` and
+`PIPELINE_SOURCE_APP_PRIVATE_KEY` and needs contents-read access to both private
+repositories. Pipeline download and Skills acquisition use separate tokens, each
+limited to its source repository. The Skills token is revoked before caller
+dependency setup and review execution.
+
 ```bash
 # Install dependencies
 npm install
