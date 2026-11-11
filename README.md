@@ -142,12 +142,14 @@ The PR may be too complex. Consider breaking it into smaller PRs.
 
 ## Development
 
-CI review runs through Pipeline and fetches the review collection from Skills
-through Crew. The source App uses `PIPELINE_SOURCE_APP_CLIENT_ID` and
-`PIPELINE_SOURCE_APP_PRIVATE_KEY` and needs contents-read access to both private
-repositories. Pipeline download and Skills acquisition use separate tokens, each
-limited to its source repository. The Skills token is revoked before caller
-dependency setup and review execution.
+CI review runs through [with-logic/pipeline](https://github.com/with-logic/pipeline).
+[Crew](https://github.com/with-logic/crew) downloads the review instructions from
+[with-logic/skills](https://github.com/with-logic/skills). The source App uses
+`PIPELINE_SOURCE_APP_CLIENT_ID` and `PIPELINE_SOURCE_APP_PRIVATE_KEY` and needs
+contents-read access to those two private repositories. Pipeline download and
+Skills acquisition use separate tokens, each limited to its source repository.
+The Skills token is revoked before this repository's dependency setup and review
+execution.
 
 ```bash
 # Install dependencies
