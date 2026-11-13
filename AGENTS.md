@@ -13,8 +13,9 @@ Run the local review before you open a pull request. It does not replace the
 hosted review, which stays the merge requirement.
 
 Prepare the local review in the existing coding-agent session. From this
-repository root, run `crew version` and `crew install --latest --json` with the command timeout of your session. Require
-a published Crew release at or above the minimum that
+repository root, run `crew version` and `crew install --latest --json` with
+the command timeout of your session. Require a published Crew release at or
+above the minimum that
 [Set up the shared local review](#set-up-the-shared-local-review) names. This
 install is the refresh. Run it once per invocation; it satisfies the install
 step of the shared procedure, so do not run it again there. Then read the
