@@ -165,6 +165,9 @@ npm run lint
 npm run build
 ```
 
+Coding-agent instructions are in [AGENTS.md](AGENTS.md). They include an optional
+shared local review for contributors with read access to `with-logic/skills`.
+
 ## License
 
 MIT
