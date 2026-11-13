@@ -33,8 +33,9 @@ helper and the source records, then continue `/review` in this session.
 Failed preparation stops the local review. A timeout is a failed preparation.
 `npm install` does not run Crew, so it does not prove readiness. A `no_agents`
 result or another agent's install does not prove readiness. Do not use stale or
-personal skills as a fallback. If you cannot recover the preparation, report
-the local review as not run and ask the user before you open the pull request.
+personal skills as a fallback. If you cannot recover the preparation for any
+other reason, report the local review as not run and ask the user before you
+open the pull request.
 
 The shared procedure includes proposed PR title and body text from the
 separately installed `pull-request-description` helper. This local step does not
