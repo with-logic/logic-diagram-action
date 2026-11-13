@@ -11,10 +11,7 @@ treat missing Crew as a failed review.
 
 The shared local review is optional in this repository. It is available to
 contributors who have Git read access to `with-logic/skills`. Without that
-access, do not run it. The local review does not replace the hosted review. The
-hosted review covers a pull request that a contributor with write access opens
-from a branch of this repository. It does not run for a pull request from a
-fork.
+access, do not run it. The local review does not replace the hosted review.
 
 When a contributor runs the local review, prepare it in the existing
 coding-agent session. From this repository root, run `crew version` and
