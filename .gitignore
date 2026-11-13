@@ -28,3 +28,10 @@ npm-debug.log*
 
 # Test artifacts
 *.tsbuildinfo
+
+# Crew-managed project copies of skills from a private repository. This
+# repository is public, so all entries in the Crew target directories are
+# ignored. To track a skill that this repository owns, add a negation rule,
+# for example !/.claude/skills/<name>/.
+/.agents/skills/*
+/.claude/skills/*
